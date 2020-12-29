@@ -11,16 +11,39 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
-    <div class="container-fluid">
-      <div class="row">
-        <h5>Search Cities:</h5>
-        <div class="form-inline form-group">
-          <input class="form" type="text" id="search-value" />
-          <button class="btn btn-primary" id="search-button"></button>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>Search City Here</h2>
+            <form id="search-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Search City"
+                  id="Search-term"
+                /><datalist id="city-history"></datalist>
+                <button
+                  id="search-button-city"
+                  class="btn btn-custom text-black"
+                  type="button"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
+            <div id="city-results">
+              <div class="city"></div>
+              <div class="wind"></div>
+              <div class="humidity"></div>
+              <div class="temp"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>

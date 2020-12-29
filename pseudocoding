@@ -4,8 +4,11 @@ input box for the user id = search-value.
 Script:
 get api key from "current weather"
 create a function which inludes the users input ("#search-value")
+clear current data in the input box,
+store user input onto local storage,
+make sure to clear any old data .empty(),
 create $.ajax with url and key to get the infomation.
-
+for temperature in farenheit use imperial
 create html content for the current weather
 wind,
 humidity,
@@ -29,3 +32,58 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
+
+.then(function (response) {
+        console.log(queryUrl);
+        console.log(response);
+        let title = $(".city").html(
+          "<h1>" + response.name + " Weather Details<h1>"
+        );
+        let wind = $(".wind").text("Wind Speed: " + response.wind.speed);
+        let humidity = $(".humidity").text(
+          "Humidity: " + response.main.humidity
+        );
+        let temp = $(".temperature").text("Temperature: " + response.main.temp);
+      });
+---------------------------------
+      // const cityHistoryDataLi = $("#city-history");
+    // const resultsDiv = $("#city-results");
+    // let cityHistoryArray;
+    const searchValue = $("#search-city").val();
+    $("#search-city").val("");
+    searchWeather(searchValue);
+
+    // gets city history form local storage
+
+    cityHistoryArray = JSON.parse(localStorage.getItem("cityHistory")) || [];
+    // updateHistory();
+
+    //const cityInput = $("#search-city");
+
+    var queryUrl =
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      searchValue +
+      "82eaacfb116d97250476fbd65fb153fd&units=imperial";
+    function searchWeather(searchValue) {
+      $.ajax({
+        url: queryUrl,
+        method: "GET",
+        success: function (data) {
+          // if (history.indexOf(searchValue) === -1) {
+          //   history.push(searchValue);
+          //   window.localStorage.setItem("history", JSON.stringify(history));
+          // }
+          let title = $(".city").html(
+            "<h1>" + response.name + " Weather Details<h1>"
+          );
+          let wind = $(".wind").text("Wind Speed: " + response.wind.speed);
+          let humidity = $(".humidity").text(
+            "Humidity: " + response.main.humidity
+          );
+          let temp = $(".temperature").text(
+            "Temperature: " + response.main.temp
+          );
+          $("#city-results").append(title, wind, humidity, temp);
+        },
+      });
+    }
